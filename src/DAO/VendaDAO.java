@@ -16,7 +16,6 @@ public class VendaDAO {
             ps.setDouble(4, venda.getValorTotal());
             ps.executeUpdate();
 
-            // Atualiza lugares disponíveis (opcional)
             String updateSql = "UPDATE sessoes SET lugares_disponiveis = lugares_disponiveis - ? WHERE id = ?";
             try (PreparedStatement updatePs = conn.prepareStatement(updateSql)) {
                 updatePs.setInt(1, venda.getQuantidadeIngressos());
