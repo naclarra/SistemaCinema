@@ -14,6 +14,8 @@ public class TelaLogin {
     private JPasswordField passwordField1; // campo para senha
     private JButton entrar;
     private JButton sairButton;
+    private JLabel imagem;
+    private JLabel imgpipoca;
 
 
     public TelaLogin() {

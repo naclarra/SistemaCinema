@@ -11,6 +11,7 @@ public class TelaHome {
     private JButton btnComprar;
     private JButton btnEntrar;
     private JPanel panelbotoes;
+    private JButton btnadm;
 
     public TelaHome() {
         btnEntrar.addActionListener(new ActionListener() {

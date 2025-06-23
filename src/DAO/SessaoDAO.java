@@ -12,7 +12,7 @@ public class SessaoDAO {
     public void cadastrar(Sessao sessao) {
         String sql = "INSERT INTO sessoes (horario, id_filme, id_sala, lugares_disponiveis) VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = FabricaConexao.getConexao();
+        try (Connection conn = dao.FabricaConexao.getConexao();
              PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setTimestamp(1, Timestamp.valueOf(sessao.getHorario()));
@@ -39,7 +39,7 @@ public class SessaoDAO {
                 "JOIN salas sa ON s.id_sala = sa.id " +
                 "WHERE s.id_filme = ?";
 
-        try (Connection conn = FabricaConexao.getConexao();
+        try (Connection conn = dao.FabricaConexao.getConexao();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, idFilme);

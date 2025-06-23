@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TelaVenda extends JFrame {
@@ -15,10 +14,13 @@ public class TelaVenda extends JFrame {
     private JPanel painelmeio;
     private JPanel painelbaixo;
     private JLabel txtvenda;
-    private JLabel txtsessao;
+    private JLabel lblsessao;
     private JLabel txtquantidade;
-    private JComboBox<Sessao> comboBox1;
+    private JComboBox<Sessao> cmbsessao;
     private JTextField txtfieldqntd;
+    private JComboBox cmbqtdingresso;
+    private JLabel lblfilme;
+    private JComboBox cmbfilme;
     private JButton btncomprar;
     private JButton btncancelar;
 
@@ -65,9 +67,9 @@ public class TelaVenda extends JFrame {
     }
 
     private void carregarSessoes() {
-        comboBox1.removeAllItems();
+        cmbsessao.removeAllItems();
 
-        comboBox1.addItem(new Sessao(0, LocalDateTime.now(), null, null, 0) {
+        cmbsessao.addItem(new Sessao(0, LocalDateTime.now(), null, null, 0) {
             @Override
             public String toString() {
                 return " Selecione uma sessão ";
@@ -76,7 +78,7 @@ public class TelaVenda extends JFrame {
 
         List<Sessao> sessoes = controller.listarSessoesDisponiveis();
         for (Sessao sessao : sessoes) {
-            comboBox1.addItem(sessao);
+            cmbsessao.addItem(sessao);
         }
     }
 
@@ -84,7 +86,7 @@ public class TelaVenda extends JFrame {
         if (!validarCampos()) return;
 
         try {
-            Sessao sessao = (Sessao) comboBox1.getSelectedItem();
+            Sessao sessao = (Sessao) cmbsessao.getSelectedItem();
             int quantidade = Integer.parseInt(txtfieldqntd.getText());
 
             if (quantidade <= 0) {
@@ -104,7 +106,7 @@ public class TelaVenda extends JFrame {
     }
 
     private boolean validarCampos() {
-        if (comboBox1.getSelectedIndex() <= 0) {
+        if (cmbsessao.getSelectedIndex() <= 0) {
             JOptionPane.showMessageDialog(this, "Selecione uma sessão válida!", "Aviso", JOptionPane.WARNING_MESSAGE);
             return false;
         }
@@ -119,7 +121,7 @@ public class TelaVenda extends JFrame {
 
     private void limparCampos() {
         txtfieldqntd.setText("");
-        comboBox1.setSelectedIndex(0);
+        cmbsessao.setSelectedIndex(0);
     }
 
     public static void main(String[] args) {
